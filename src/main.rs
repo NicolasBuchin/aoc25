@@ -3,7 +3,8 @@ use std::fs::read_to_string;
 // mod day1;
 // mod day2;
 // mod day3;
-mod day4;
+// mod day4;
+mod day5;
 
 fn main() {
     // let input = read_to_string("inputs/day1/input.txt").expect("file not found!");
@@ -15,8 +16,11 @@ fn main() {
     // let input = read_to_string("inputs/day3/input.txt").expect("file not found!");
     // assert_eq!(day3::batteries(&input), 17207);
     // assert_eq!(day3::batteries2(&input), 170997883706617);
-    let input = read_to_string("inputs/day4/input.txt").expect("file not found!");
-    assert_eq!(day4::forklift(&input), 1435);
-    assert_eq!(day4::forklift2(&input), 8623);
-    // println!("{}", day4::forklift2(&input));
+    // let input = read_to_string("inputs/day4/input.txt").expect("file not found!");
+    // assert_eq!(day4::forklift(&input), 1435);
+    // assert_eq!(day4::forklift2(&input), 8623);
+    let input = read_to_string("inputs/day5/input.txt").expect("file not found!");
+    assert_eq!(day5::spoiled(&input), 615);
+    assert_eq!(day5::spoiled2(&input), 353716783056994);
+    // println!("{}", day5::spoiled2(&input));
 }
