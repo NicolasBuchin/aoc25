@@ -5,7 +5,8 @@ use std::fs::read_to_string;
 // mod day3;
 // mod day4;
 // mod day5;
-mod day6;
+// mod day6;
+mod day7;
 
 fn main() {
     // let input = read_to_string("inputs/day1/input.txt").expect("file not found!");
@@ -23,8 +24,11 @@ fn main() {
     // let input = read_to_string("inputs/day5/input.txt").expect("file not found!");
     // assert_eq!(day5::spoiled(&input), 615);
     // assert_eq!(day5::spoiled2(&input), 353716783056994);
-    let input = read_to_string("inputs/day6/input.txt").expect("file not found!");
-    assert_eq!(day6::cephalopod_math(&input), 4951502530386);
-    assert_eq!(day6::cephalopod_math2(&input), 8486156119946);
-    // println!("{}", day6::cephalopod_math2(&input));
+    // let input = read_to_string("inputs/day6/input.txt").expect("file not found!");
+    // assert_eq!(day6::cephalopod_math(&input), 4951502530386);
+    // assert_eq!(day6::cephalopod_math2(&input), 8486156119946);
+    let input = read_to_string("inputs/day7/input.txt").expect("file not found!");
+    assert_eq!(day7::tachyon_manifolds(&input), 1543);
+    assert_eq!(day7::tachyon_manifolds2(&input), 3223365367809);
+    // println!("{}", day7::tachyon_manifolds2(&input));
 }
