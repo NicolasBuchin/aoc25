@@ -25,7 +25,7 @@ pub fn join_circuits(input: &str, n: usize) -> usize {
     }
     let mut sizes = uf.sizes();
 
-    sizes.sort();
+    sizes.sort_unstable();
     sizes.iter().rev().take(3).product()
 }
 
@@ -47,7 +47,7 @@ fn get_distances(positions: &[Vec3]) -> Vec<(usize, usize, usize)> {
         }
     }
 
-    distances.sort_by_key(|&(d, _, _)| d);
+    distances.sort_unstable_by_key(|&(d, _, _)| d);
     distances
 }
 
@@ -102,13 +102,20 @@ impl UnionFind {
         }
     }
 
-    pub fn find(&mut self, x: usize) -> usize {
-        if self.parent[x] != x {
-            self.parent[x] = self.find(self.parent[x]);
-            return self.parent[x];
+    pub fn find(&mut self, mut x: usize) -> usize {
+        let mut root = x;
+
+        while self.parent[root] != root {
+            root = self.parent[root];
         }
 
-        x
+        while self.parent[x] != root {
+            let next = self.parent[x];
+            self.parent[x] = root;
+            x = next;
+        }
+
+        root
     }
 
     pub fn union(&mut self, a: usize, b: usize) {
