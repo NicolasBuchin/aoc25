@@ -39,6 +39,7 @@ pub fn tachyon_manifolds(input: &str) -> usize {
 
     res
 }
+
 #[inline(always)]
 fn insert_sorted(vec: &mut Vec<usize>, n: usize) {
     if vec.is_empty() {
