@@ -7,7 +7,8 @@ use std::fs::read_to_string;
 // mod day5;
 // mod day6;
 // mod day7;
-mod day8;
+// mod day8;
+mod day9;
 
 fn main() {
     // let input = read_to_string("inputs/day1/input.txt").expect("file not found!");
@@ -32,10 +33,20 @@ fn main() {
     // assert_eq!(day7::tachyon_manifolds(&input), 1543);
     // assert_eq!(day7::tachyon_manifolds2(&input), 3223365367809);
 
-    let test = read_to_string("inputs/day8/test.txt").expect("file not found!");
-    assert_eq!(day8::join_circuits(&test, 10), 40);
-    assert_eq!(day8::join_circuits2(&test), 25272);
-    let input = read_to_string("inputs/day8/input.txt").expect("file not found!");
-    assert_eq!(day8::join_circuits(&input, 1000), 140008);
-    assert_eq!(day8::join_circuits2(&input), 9253260633);
+    // let test = read_to_string("inputs/day8/test.txt").expect("file not found!");
+    // assert_eq!(day8::join_circuits(&test, 10), 40);
+    // assert_eq!(day8::join_circuits2(&test), 25272);
+    // let input = read_to_string("inputs/day8/input.txt").expect("file not found!");
+    // assert_eq!(day8::join_circuits(&input, 1000), 140008);
+    // assert_eq!(day8::join_circuits2(&input), 9253260633);
+
+    let test = read_to_string("inputs/day9/test.txt").expect("file not found!");
+    assert_eq!(day9::red_rectangle(&test), 50);
+    assert_eq!(day9::red_rectangle2(&test), 24);
+    let input = read_to_string("inputs/day9/input.txt").expect("file not found!");
+    assert_eq!(day9::red_rectangle(&input), 4777967538);
+    assert_eq!(day9::red_rectangle2(&input), 1439894345);
+
+    // println!("{}", day9::red_rectangle2(&test));
+    // println!("{}", day9::red_rectangle2(&input));
 }

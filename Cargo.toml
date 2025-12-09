@@ -9,5 +9,5 @@ edition = "2024"
 criterion = "0.8"
 
 [[bench]]
-name = "day8"
+name = "day9"
 harness = false
