@@ -1,3 +1,144 @@
+pub fn red_rectangle3(input: &str) -> usize {
+    let (positions, xs, ys) = parse2(input);
+
+    let mut grid = [[false; 512]; 512];
+    fill_polygon(&mut grid, &positions);
+
+    let mut max = 0;
+
+    let len = positions.len();
+    for i in 0..len - 1 {
+        for j in i + 2..len {
+            let (x1, y1) = positions[i];
+            let (x2, y2) = positions[j];
+
+            let x1u = xs[x1];
+            let x2u = xs[x2];
+            let y1u = ys[y1];
+            let y2u = ys[y2];
+
+            let a = area(&(x1u, y1u), &(x2u, y2u));
+
+            if a > max {
+                let (minx, maxx) = if x1 < x2 { (x1, x2) } else { (x2, x1) };
+                let (miny, maxy) = if y1 < y2 { (y1, y2) } else { (y2, y1) };
+
+                let mut ok = true;
+
+                for x in minx + 1..maxx {
+                    for y in miny + 1..maxy {
+                        if !grid[y][x] {
+                            ok = false;
+                            break;
+                        }
+                    }
+                    if !ok {
+                        break;
+                    }
+                }
+
+                if ok {
+                    max = a;
+                }
+            }
+        }
+    }
+
+    max
+}
+
+pub fn fill_polygon(grid: &mut [[bool; 512]; 512], poly: &[(usize, usize)]) {
+    let len = poly.len();
+
+    for y in 0..len {
+        let mut intersections = Vec::with_capacity(len);
+
+        let scan_y = y as f32 + 0.5;
+
+        for i in 0..len {
+            let j = if i == len - 1 { 0 } else { i + 1 };
+            let (x1, y1) = (poly[i].0 as f32, poly[i].1 as f32);
+            let (x2, y2) = (poly[j].0 as f32, poly[j].1 as f32);
+
+            if (y1 <= scan_y && y2 > scan_y) || (y2 <= scan_y && y1 > scan_y) {
+                let x_intersect = x1 + (scan_y - y1) * (x2 - x1) / (y2 - y1);
+                intersections.push(x_intersect);
+            }
+        }
+
+        intersections.sort_by(|a, b| a.partial_cmp(b).unwrap());
+
+        for chunk in intersections.chunks(2) {
+            if chunk.len() == 2 {
+                let x_start = chunk[0].floor() as usize;
+                let x_end = chunk[1].ceil() as usize;
+                for x in x_start..=x_end {
+                    grid[y][x] = true;
+                }
+            }
+        }
+    }
+
+    for i in 0..len {
+        let j = (i + 1) % len;
+        draw_line(grid, poly[i], poly[j]);
+    }
+}
+
+fn draw_line(grid: &mut [[bool; 512]; 512], p0: (usize, usize), p1: (usize, usize)) {
+    let (mut x0, mut y0) = (p0.0 as i32, p0.1 as i32);
+    let (x1, y1) = (p1.0 as i32, p1.1 as i32);
+
+    let dx = (x1 - x0).abs();
+    let dy = -(y1 - y0).abs();
+    let sx = if x0 < x1 { 1 } else { -1 };
+    let sy = if y0 < y1 { 1 } else { -1 };
+    let mut err = dx + dy;
+
+    loop {
+        if x0 >= 0 && x0 < 512 && y0 >= 0 && y0 < 512 {
+            grid[y0 as usize][x0 as usize] = true;
+        }
+        if x0 == x1 && y0 == y1 {
+            break;
+        }
+        let e2 = 2 * err;
+        if e2 >= dy {
+            err += dy;
+            x0 += sx;
+        }
+        if e2 <= dx {
+            err += dx;
+            y0 += sy;
+        }
+    }
+}
+
+fn parse2(input: &str) -> (Vec<(usize, usize)>, Vec<usize>, Vec<usize>) {
+    let mut positions = Vec::new();
+    let mut xs = Vec::new();
+    let mut ys = Vec::new();
+
+    for line in input.lines() {
+        let (x, y) = parse_vec(line);
+        positions.push((x, y));
+        xs.push(x);
+        ys.push(y);
+    }
+
+    xs.sort_unstable();
+    ys.sort_unstable();
+
+    for (x, y) in positions.iter_mut() {
+        let i = xs.binary_search(x).unwrap();
+        let j = ys.binary_search(y).unwrap();
+        *x = i;
+        *y = j;
+    }
+
+    (positions, xs, ys)
+}
+
 pub fn red_rectangle2(input: &str) -> usize {
     let positions = parse(input);
 

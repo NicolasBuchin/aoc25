@@ -43,9 +43,11 @@ fn main() {
     let test = read_to_string("inputs/day9/test.txt").expect("file not found!");
     assert_eq!(day9::red_rectangle(&test), 50);
     assert_eq!(day9::red_rectangle2(&test), 24);
+    assert_eq!(day9::red_rectangle3(&test), 24);
     let input = read_to_string("inputs/day9/input.txt").expect("file not found!");
     assert_eq!(day9::red_rectangle(&input), 4777967538);
     assert_eq!(day9::red_rectangle2(&input), 1439894345);
+    assert_eq!(day9::red_rectangle3(&input), 1439894345);
 
     // println!("{}", day9::red_rectangle2(&test));
     // println!("{}", day9::red_rectangle2(&input));

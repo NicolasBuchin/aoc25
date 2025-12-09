@@ -8,6 +8,10 @@ fn bench_day9(c: &mut Criterion) {
     c.bench_function("day9_part1", |b| b.iter(|| day9::red_rectangle(&input)));
 
     c.bench_function("day9_part2", |b| b.iter(|| day9::red_rectangle2(&input)));
+
+    c.bench_function("day9_part2 ewen", |b| {
+        b.iter(|| day9::red_rectangle3(&input))
+    });
 }
 
 criterion_group!(benches, bench_day9);
