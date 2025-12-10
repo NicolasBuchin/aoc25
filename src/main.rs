@@ -8,7 +8,8 @@ use std::fs::read_to_string;
 // mod day6;
 // mod day7;
 // mod day8;
-mod day9;
+// mod day9;
+mod day10;
 
 fn main() {
     // let input = read_to_string("inputs/day1/input.txt").expect("file not found!");
@@ -40,15 +41,22 @@ fn main() {
     // assert_eq!(day8::join_circuits(&input, 1000), 140008);
     // assert_eq!(day8::join_circuits2(&input), 9253260633);
 
-    let test = read_to_string("inputs/day9/test.txt").expect("file not found!");
-    assert_eq!(day9::red_rectangle(&test), 50);
-    assert_eq!(day9::red_rectangle2(&test), 24);
-    assert_eq!(day9::red_rectangle3(&test), 24);
-    let input = read_to_string("inputs/day9/input.txt").expect("file not found!");
-    assert_eq!(day9::red_rectangle(&input), 4777967538);
-    assert_eq!(day9::red_rectangle2(&input), 1439894345);
-    assert_eq!(day9::red_rectangle3(&input), 1439894345);
+    // let test = read_to_string("inputs/day9/test.txt").expect("file not found!");
+    // assert_eq!(day9::red_rectangle(&test), 50);
+    // assert_eq!(day9::red_rectangle2(&test), 24);
+    // assert_eq!(day9::red_rectangle3(&test), 24);
+    // let input = read_to_string("inputs/day9/input.txt").expect("file not found!");
+    // assert_eq!(day9::red_rectangle(&input), 4777967538);
+    // assert_eq!(day9::red_rectangle2(&input), 1439894345);
+    // assert_eq!(day9::red_rectangle3(&input), 1439894345);
 
-    // println!("{}", day9::red_rectangle2(&test));
-    // println!("{}", day9::red_rectangle2(&input));
+    let test = read_to_string("inputs/day10/test.txt").expect("file not found!");
+    assert_eq!(day10::toggle_ligths(&test), 7);
+    assert_eq!(day10::toggle_ligths2(&test), 33);
+    let input = read_to_string("inputs/day10/input.txt").expect("file not found!");
+    assert_eq!(day10::toggle_ligths(&input), 419);
+    assert_eq!(day10::toggle_ligths2(&input), 18369);
+
+    // println!("{}", day10::toggle_ligths2(&test));
+    // println!("{}", day10::toggle_ligths2(&input));
 }
