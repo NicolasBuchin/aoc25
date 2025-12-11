@@ -14,15 +14,11 @@ pub fn reactor2(input: &str) -> usize {
     let fft = 12979;
     let out = 13378;
 
-    let svr_dac = find_cached(svr, dac, map.clone());
-    let dac_ftt = find_cached(dac, fft, map.clone());
-    let fft_out = find_cached(fft, out, map.clone());
-
     let svr_fft = find_cached(svr, fft, map.clone());
     let fft_dac = find_cached(fft, dac, map.clone());
     let dac_out = find_cached(dac, out, map.clone());
 
-    svr_dac * dac_ftt * fft_out + svr_fft * fft_dac * dac_out
+    svr_fft * fft_dac * dac_out
 }
 
 #[cached]
