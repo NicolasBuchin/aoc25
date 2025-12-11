@@ -9,7 +9,8 @@ use std::fs::read_to_string;
 // mod day7;
 // mod day8;
 // mod day9;
-mod day10;
+// mod day10;
+mod day11;
 
 fn main() {
     // let input = read_to_string("inputs/day1/input.txt").expect("file not found!");
@@ -50,13 +51,21 @@ fn main() {
     // assert_eq!(day9::red_rectangle2(&input), 1439894345);
     // assert_eq!(day9::red_rectangle3(&input), 1439894345);
 
-    let test = read_to_string("inputs/day10/test.txt").expect("file not found!");
-    assert_eq!(day10::toggle_ligths(&test), 7);
-    assert_eq!(day10::toggle_ligths2(&test), 33);
-    let input = read_to_string("inputs/day10/input.txt").expect("file not found!");
-    assert_eq!(day10::toggle_ligths(&input), 419);
-    assert_eq!(day10::toggle_ligths2(&input), 18369);
+    // let test = read_to_string("inputs/day10/test.txt").expect("file not found!");
+    // assert_eq!(day10::toggle_ligths(&test), 7);
+    // assert_eq!(day10::toggle_ligths2(&test), 33);
+    // let input = read_to_string("inputs/day10/input.txt").expect("file not found!");
+    // assert_eq!(day10::toggle_ligths(&input), 419);
+    // assert_eq!(day10::toggle_ligths2(&input), 18369);
 
-    // println!("{}", day10::toggle_ligths2(&test));
-    // println!("{}", day10::toggle_ligths2(&input));
+    let test = read_to_string("inputs/day11/test.txt").expect("file not found!");
+    assert_eq!(day11::reactor(&test), 5);
+    let test = read_to_string("inputs/day11/test2.txt").expect("file not found!");
+    assert_eq!(day11::reactor2(&test), 2);
+    let input = read_to_string("inputs/day11/input.txt").expect("file not found!");
+    assert_eq!(day11::reactor(&input), 753);
+    assert_eq!(day11::reactor2(&input), 450854305019580);
+
+    // println!("{}", day11::reactor2(&test));
+    // println!("{}", day11::reactor2(&input));
 }
